@@ -18,14 +18,12 @@ class MyApp extends StatelessWidget {
         // TASK 2: Change the primary swatch color (try Colors.red, Colors.green)
         primarySwatch: Colors.red, 
       ),
-      home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +35,27 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Card(
+              elevation: 4, 
+              margin: EdgeInsets.all(16),
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Icon(Icons.person, size: 30, color: Colors.red),
+                    SizedBox(width: 16),
+                    Column(
+                      children: [
+                        Text('Brian Walker',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text('Major: Computer Science',
+                        style: TextStyle(color: Colors.grey)),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
             // TASK 4: Change the main text below
             Text(
               'Welcome to my app',

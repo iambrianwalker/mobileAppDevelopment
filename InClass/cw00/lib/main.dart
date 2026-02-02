@@ -6,8 +6,23 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final List<MaterialColor> _colors = [Colors.red, Colors.blue, Colors.green];
+  final List<String> _colorNames = ['Red', 'Blue', 'Green'];
+  int _currentColorIndex = 0;
+
+  void _toggleColor() {
+    setState(() {
+      _currentColorIndex = (_currentColorIndex + 1) % _colors.length;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +31,23 @@ class MyApp extends StatelessWidget {
       title: 'My Amazing App',
       theme: ThemeData(
         // TASK 2: Change the primary swatch color (try Colors.red, Colors.green)
-        primarySwatch: Colors.red, 
+        primarySwatch: _colors[_currentColorIndex], 
+        appBarTheme: AppBarTheme(backgroundColor: _colors[_currentColorIndex]),
       ),
+      home: HomePage(onToggleColor: _toggleColor, currentColorIndex: _currentColorIndex, colorNames: _colorNames, currentColor: _colors[_currentColorIndex]),
     );
   }
 }
 
+
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final VoidCallback onToggleColor;
+  final int currentColorIndex;
+  final List<String> colorNames;
+  final MaterialColor currentColor;
+
+  const HomePage({super.key, required this.onToggleColor, required this.currentColorIndex, required this.colorNames, required this.currentColor});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +97,17 @@ class HomePage extends StatelessWidget {
                 print('Button Clicked!');
               },
               // TASK 6: Change the text on the button
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              style: ElevatedButton.styleFrom(backgroundColor: currentColor),
               child: Text('Press'),
             ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: onToggleColor,
+              style: ElevatedButton.styleFrom(backgroundColor: currentColor),
+              child: Text('Change Color Palette'),
+            ),
+            SizedBox(height: 20),
+            Text('Current color: ${colorNames[currentColorIndex]}'),
             SizedBox(height: 30),
             Text(
               'Created by: Brian Walker'

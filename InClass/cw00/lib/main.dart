@@ -80,6 +80,20 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Icon(Icons.star, color: Colors.amber),
+                    title: Text('Item ${index + 1}'),
+                    subtitle: Text('Description for item ${index + 1}'),
+                    trailing: Icon(Icons.arrow_forward_ios),
+                  );
+                },
+              ),
+            ),
             // TASK 4: Change the main text below
             Text(
               'Welcome to my app',
@@ -111,7 +125,8 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 30),
             Text(
               'Created by: Brian Walker'
-            )
+            ),
+            Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg')
           ],
         ),
       ),
@@ -120,11 +135,13 @@ class HomePage extends StatelessWidget {
 }
 
 class CounterWidget extends StatefulWidget {
+  const CounterWidget({super.key});
+
   @override
-  _CounterWidgetState createState() => _CounterWidgetState();
+  CounterWidgetState createState() => CounterWidgetState();
 }
 
-class _CounterWidgetState extends State<CounterWidget> {
+class CounterWidgetState extends State<CounterWidget> {
   int _count = 0;
 
   @override
@@ -133,12 +150,12 @@ class _CounterWidgetState extends State<CounterWidget> {
       Text('Count: $_count', style: TextStyle(fontSize: 24)),
       Row(mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ElevatedButton(child: 
+        ElevatedButton(
         onPressed: () => setState(() => _count--),
         child: Icon(Icons.remove),
         ),
         SizedBox(width: 20),
-        ElevatedButton(child:
+        ElevatedButton(
         onPressed: () => setState(() => _count++),
         child: Icon(Icons.add),
         ),

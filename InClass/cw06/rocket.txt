@@ -1,0 +1,11 @@
+1. You started at 0, pressed Ignite 7 times, moved the slider to 52, then pressed Decrement twice. What exact value and color status did your app show at each step?
+
+Step 1 shows 7 with an orange color, step 2 shows 52 with a green color, step 3 shows 50 with and orange color.
+
+2. Describe exactly what happened in your app when you attempted to go below 0 and above 100. What logic in your code prevented invalid values?
+
+Nothing happens because I added logic that if the _counter was below 1 then it equals 0 and if it is above 99 then it equals 100. It can't go past those values.
+
+3. At what exact action did your app switch from numeric display to "LIFTOFF!"? Explain how your condition check works and why it triggers at that point.
+
+It triggered as soon as the _counter passed 99 because I added logic in my build widget that has a conditional that _counter is either equal to 100 and displaying liftoff or equal to _counter.

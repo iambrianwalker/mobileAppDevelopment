@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
 }
 
 class CounterWidget extends StatefulWidget {
+  const CounterWidget({super.key});
+
   @override
   _CounterWidgetState createState() => _CounterWidgetState();
 }
